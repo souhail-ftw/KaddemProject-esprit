@@ -1,5 +1,6 @@
 package tn.ey.dev.kaddemproject.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class Contrat {
     private boolean archive;
     private int montantContrat;
 
+    @JsonIgnore
     @ManyToOne
     Etudiant etudiant;
 

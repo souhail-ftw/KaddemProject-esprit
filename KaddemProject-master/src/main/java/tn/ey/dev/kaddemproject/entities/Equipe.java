@@ -1,5 +1,6 @@
 package tn.ey.dev.kaddemproject.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,9 +19,10 @@ public class Equipe {
     private int idEquipe;
     String nomEquipe;
     @Enumerated(EnumType.STRING)
-     Niveau niveau;
+    Niveau niveau;
     @OneToOne(mappedBy = "equipe")
     DetailEquipe detailEquipe;
+    @JsonIgnore
     @ManyToMany
     List<Etudiant> etudiants;
 }

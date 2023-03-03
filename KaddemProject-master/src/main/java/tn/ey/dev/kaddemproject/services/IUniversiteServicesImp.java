@@ -3,6 +3,7 @@ package tn.ey.dev.kaddemproject.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import tn.ey.dev.kaddemproject.entities.Departement;
 import tn.ey.dev.kaddemproject.entities.Etudiant;
 import tn.ey.dev.kaddemproject.entities.Universite;
@@ -49,12 +50,12 @@ public class IUniversiteServicesImp implements IUniversiteServices{
         Departement departement = departementRepository.findById(idDepartement).orElse(null);
 
         // verification des objets
-        if (universite != null && departement != null) {
-            // traitement
-            // affection d'universite dans le departement
-            universite.getDepartement().add(departement);
+        Assert.notNull(universite,"universte must not be null");
+        Assert.notNull(departement,"departement must not be null");
 
-            universiteRepository.save(universite);
-        }
+        universite.getDepartement().add(departement);
+
+        universiteRepository.save(universite);
+
     }
 }
